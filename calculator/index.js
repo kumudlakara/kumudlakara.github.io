@@ -12,6 +12,7 @@ function multiply(a,b){
 
 function divide(a,b){
     if(b===0){
+        //needs to be fixed
         return "ERROR";
     }
     disp.textContent = Math.round((a/b)*100)/100;
