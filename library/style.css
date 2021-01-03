@@ -1,9 +1,11 @@
-#form{
-    display: block;
-  position: fixed;
-  
+#sidebar{
+  display: block ;
+  visibility: visible;
+}
+#form-popup{
+  display:block !important;
+  visibility: hidden;
+  position: fixed; 
 }
 
-.card{
-  
-}
+

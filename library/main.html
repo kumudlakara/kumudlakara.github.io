@@ -8,9 +8,20 @@
             <p class="stat" id="totalbooks">Total Books: </p>
             <p class="stat" id="totalpages">Total pages: </p>
             <p class="stat" id="completed">Books completed: </p>
+            <button id="show-form-btn" type="button" name="show-form">Add Book</button>
         </div>
-        <div >
-            <a href="form.html"><button id="show-form-btn" type="button" name="show-form">Add Book</button></a>
+        <div id="form-el">
+            <form action="main.html" id="form-popup">
+                <label for="title">Ttitle</label>
+                <input id="title" type="text" name="title" placeholder="Enter book title" required>
+                <label for="author">Author</label>
+                <input id="author" type="text" name="author" placeholder="Enter author name" required>
+                <label for="npages">Number of pages</label>
+                <input id="npages" type="text" name="npages" placeholder="Enter number of pages" required>
+                <label for="read">Read</label>
+                <input id="read" type="checkbox" name="read" id="switch" value=1>
+                <input id="add-btn" type="submit" name="add" value="Add">
+            </form>
         </div>
         <div id="cards">
             <p>Hello</p>

@@ -1,4 +1,5 @@
 let myLibrary = []
+let b1;
 
 function Book(title, author, npages, read){
     this.title = title;
@@ -18,8 +19,9 @@ function addToStorage(b1){
         storage.setItem('totalPages', b1.npages);
     }
     if(storage.getItem("completedBooks") === null){
+    if(document.querySelector('#read').checked === true){
         storage.setItem('completedBooks', 1);
-    }
+    }}
     else{
     console.log(document.querySelector('#read').checked);
     if(document.querySelector('#read').checked === true){
@@ -35,16 +37,27 @@ function addToStorage(b1){
 function addBookToLibrary() {
     if(document.querySelector('#title').value !== "" && document.querySelector('#author').value !== ""
     && document.querySelector('#npages').value !== ""){
-    const b1 = new Book(document.querySelector('#title').value,
+    b1 = new Book(document.querySelector('#title').value,
     document.querySelector('#author').value,
     document.querySelector('#npages').value,
     document.querySelector('#read').value
     );
-    console.log("start");
-    console.log(b1.read);
-    addToStorage(b1);  
-    }
-    
+    addToStorage(b1);
+    const mainDiv = document.querySelector('#cards');
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('.card');
+    const btitle = document.createElement('p');
+    const pages = document.createElement('p');
+    const complete = document.createElement('p');
+    const removebtn = document.createElement('button');
+    btitle.textContent = "Book: "+b1.title;
+    pages.textContent = "Pages: "+b1.npages;
+    complete.textContent = "Complete: "+b1.read;
+    removebtn.textContent = "Remove";
+    removebtn.classList.add("title");
+    cardDiv.appendChild(btitle, pages, complete, removebtn);
+    mainDiv.appendChild(cardDiv);
+    }   
 };
 
 function updateMain(stat){
@@ -64,29 +77,22 @@ function removeBook(){
 }
 
 function addCard(){
+    console.log("in addcard");
+    const sidebar = document.querySelector("#sidebar");
+    const form = document.querySelector('#form-popup');
+    sidebar.style.visibility = "hidden";
+    form.style.visibility = "visible";
+    console.log("after form");
+    const addbtn = document.querySelector('#add-btn');
+    addbtn.addEventListener('click', addBookToLibrary);
     
-    const mainDiv = document.querySelector('#cards');
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('.card');
-    const btitle = document.createElement('p');
-    const pages = document.createElement('p');
-    const complete = document.createElement('p');
-    const removebtn = document.createElement('button');
-    btitle.textContent = "Book: "+b.title;
-    pages.textContent = "Pages: "+b.npages;
-    complete.textContent = "Complete: "+b.read;
-    removebtn.textContent = "Remove";
-    removebtn.classList.add("title");
-    cardDiv.appendChild(btitle, pages, complete, removebtn);
-    mainDiv.appendChild(cardDiv);
 }
 
 console.log(document.querySelector('#cards'));
 const storage = window.sessionStorage;
 const stats = document.querySelectorAll('.stat');
 stats.forEach(stat => updateMain(stat));
-const form = document.querySelector('#form');
-const addbtn = document.querySelector('#add-btn');
-addbtn.addEventListener('click', addBookToLibrary);
-const addCardBtn = document.querySelector('#show-form-btn');
-addCardBtn.addEventListener('click', addCard())
+const showForm = document.querySelector('#show-form-btn');
+const sidebar = document.querySelector("#sidebar");
+console.log(showForm);
+showForm.addEventListener('click', addCard);
