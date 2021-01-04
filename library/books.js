@@ -1,18 +1,17 @@
 let myLibrary = []
 let b1;
+let update = false;
 
 function Book(title, author, npages, read){
     this.title = title;
     this.author = author;
     this.npages = npages;
-    this.read = read;
-    
+    this.read = read;    
 };
 
 function addToStorage(b1){
     //console.log(storage.getItem("totalBooks"));
     if(storage.getItem("totalBooks") === null){
-        console.log("Set");
         storage.setItem('totalBooks', 1);
     }
     if(storage.getItem("totalPages") === null){
@@ -32,7 +31,38 @@ function addToStorage(b1){
     storage.setItem('totalBooks', parseInt(storage.getItem("totalBooks"))+1);
     storage.setItem('totalPages', parseInt(storage.getItem("totalPages"))+parseInt(b1.npages));
     }
+    console.log(b1);
+    cardData(b1);
 };
+
+function cardData(b1){
+    console.log("in carddata");
+    const mainDiv = document.querySelector('#cards');
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('.card');
+    const btitle = document.createElement('p');
+    const pages = document.createElement('p');
+    const complete = document.createElement('p');
+    const removebtn = document.createElement('button');
+    const titlenode = document.createTextNode("Book: "+b1.title);
+    btitle.appendChild(titlenode);
+    pages.innerHTML = "Pages: "+b1.npages;
+    complete.innerHTML = "Complete: "+b1.read;
+    removebtn.innerHTML = "Remove";
+    removebtn.classList.add("title");
+    
+    cardDiv.appendChild(btitle, pages, complete, removebtn);
+    console.log(cardDiv);
+    mainDiv.appendChild(cardDiv);
+    console.log(mainDiv);
+    /*
+    const mainDiv = document.querySelector('#sidebar');
+    const title = document.createElement('p');
+    title.textContent = "Book: ";
+    title.style.visibility = "visible !important";
+    mainDiv.appendChild(title);
+    */  
+}
 
 function addBookToLibrary() {
     if(document.querySelector('#title').value !== "" && document.querySelector('#author').value !== ""
@@ -43,20 +73,11 @@ function addBookToLibrary() {
     document.querySelector('#read').value
     );
     addToStorage(b1);
-    const mainDiv = document.querySelector('#cards');
-    const cardDiv = document.createElement('div');
-    cardDiv.classList.add('.card');
-    const btitle = document.createElement('p');
-    const pages = document.createElement('p');
-    const complete = document.createElement('p');
-    const removebtn = document.createElement('button');
-    btitle.textContent = "Book: "+b1.title;
-    pages.textContent = "Pages: "+b1.npages;
-    complete.textContent = "Complete: "+b1.read;
-    removebtn.textContent = "Remove";
-    removebtn.classList.add("title");
-    cardDiv.appendChild(btitle, pages, complete, removebtn);
-    mainDiv.appendChild(cardDiv);
+    
+    /*
+    
+    */
+   update = true;
     }   
 };
 
@@ -85,14 +106,16 @@ function addCard(){
     console.log("after form");
     const addbtn = document.querySelector('#add-btn');
     addbtn.addEventListener('click', addBookToLibrary);
-    
 }
 
-console.log(document.querySelector('#cards'));
+
 const storage = window.sessionStorage;
 const stats = document.querySelectorAll('.stat');
 stats.forEach(stat => updateMain(stat));
 const showForm = document.querySelector('#show-form-btn');
 const sidebar = document.querySelector("#sidebar");
-console.log(showForm);
 showForm.addEventListener('click', addCard);
+
+
+
+
