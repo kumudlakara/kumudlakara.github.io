@@ -9,9 +9,7 @@ function Book(title, author, npages, read){
 };
 
 function addToStorage(b1){
-    //function to add new books to storage
-    console.log("add to storage");
-    console.log(b1);
+    //function to add new books to storage   
     if(storage.getItem("totalBooks") === null){
         storage.setItem('totalBooks', 1);
     }
@@ -35,9 +33,7 @@ function addToStorage(b1){
 
 function cardData(k){
     //function to add card data to display on main page
-    console.log("in card data");
     const b = storage[k];
-    console.log(b);
     if(b.includes("title")){
     let title = b.substring(10, b.indexOf('"author"'));;
     title = title.substring(0, title.indexOf('"'));
@@ -72,7 +68,6 @@ function cardData(k){
 
 function addBookToLibrary() {
     //function to add a book to library using details given by user
-    console.log("add to lib");
     if(document.querySelector('#title').value !== "" && document.querySelector('#author').value !== ""
     && document.querySelector('#npages').value !== ""){
     b1 = new Book(document.querySelector('#title').value,
@@ -132,8 +127,6 @@ const showForm = document.querySelector('#show-form-btn');
 const sidebar = document.querySelector("#sidebar");
 showForm.addEventListener('click', addCard);
 const keys = Object.keys(storage);
-console.log(storage);
-console.log(keys);
 function showCards(keys){
     keys.forEach(key => cardData(key));
 }
