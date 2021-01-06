@@ -10,6 +10,8 @@ function Book(title, author, npages, read){
 
 function addToStorage(b1){
     //function to add new books to storage
+    console.log("add to storage");
+    console.log(b1);
     if(storage.getItem("totalBooks") === null){
         storage.setItem('totalBooks', 1);
     }
@@ -24,16 +26,18 @@ function addToStorage(b1){
     if(document.querySelector('#read').checked === true){
         b1['read'] = 5;
         storage.setItem('completedBooks', parseInt(storage.getItem("completedBooks"))+1);
-    }
+    }}
     storage.setItem(b1.title, JSON.stringify(b1));
     storage.setItem('totalBooks', parseInt(storage.getItem("totalBooks"))+1);
     storage.setItem('totalPages', parseInt(storage.getItem("totalPages"))+parseInt(b1.npages));
-    }
+    
 };
 
 function cardData(k){
     //function to add card data to display on main page
+    console.log("in card data");
     const b = storage[k];
+    console.log(b);
     if(b.includes("title")){
     let title = b.substring(10, b.indexOf('"author"'));;
     title = title.substring(0, title.indexOf('"'));
@@ -68,6 +72,7 @@ function cardData(k){
 
 function addBookToLibrary() {
     //function to add a book to library using details given by user
+    console.log("add to lib");
     if(document.querySelector('#title').value !== "" && document.querySelector('#author').value !== ""
     && document.querySelector('#npages').value !== ""){
     b1 = new Book(document.querySelector('#title').value,
@@ -116,6 +121,7 @@ function addCard(){
     form.style.display = "block";
     const addbtn = document.querySelector('#add-btn');
     addbtn.addEventListener('click', addBookToLibrary);
+    console.log("after add card");
 };
 
 
@@ -126,6 +132,8 @@ const showForm = document.querySelector('#show-form-btn');
 const sidebar = document.querySelector("#sidebar");
 showForm.addEventListener('click', addCard);
 const keys = Object.keys(storage);
+console.log(storage);
+console.log(keys);
 function showCards(keys){
     keys.forEach(key => cardData(key));
 }
