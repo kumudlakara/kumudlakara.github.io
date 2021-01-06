@@ -1,6 +1,7 @@
 body {
   background-image: url("https://i.pinimg.com/originals/c2/51/f3/c251f3af46caa0782a0642872f1ff3c8.jpg");
   background-size: cover;
+  display: block;
 }
 
 /**********************Index page**********************/
@@ -58,7 +59,7 @@ body {
   font-size: 1.2rem;
   display: block ;
   height: 100%;
-  width: 200px;
+  width: 250px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -67,8 +68,26 @@ body {
   color: white;
   border: solid;
   border-color: white;
-  background-color: rgba(0,0,0, 0.4);
+  padding: 20px;
+  /*background-color: rgba(0,0,0, 0.4);*/
   /*visibility: visible;*/
+}
+
+#show-form-btn{
+  margin-top: 50px;
+  margin-left: 35px;
+  padding: 15px;
+  background: none;
+  color: white;
+  border-width: 0.4rem;
+  font-size: 1.2rem;
+  border-radius: 15px;
+}
+
+#show-form-btn:hover{
+  box-shadow: 0px 0px 10px white;
+  transform: scale(1.1);
+  
 }
 
 #top-label{
@@ -76,12 +95,47 @@ body {
   padding: 20px;
   margin-top: 0px;
   margin-bottom: 30px;
+  font-size: 3rem;
 }
 
+
+
 #form-popup{
-  display:none;
+  display: none;
+  margin-left: 20vw;
+  margin-top: 20vh;
   /*visibility: hidden;*/
   position: fixed; 
+  border: solid;
+  border-color: #66FCF1;
+  color: white;
+  height: 30vh;
+  width: 50vw;
+  padding: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.1rem;
+  border-width: 0.5rem;
+  box-shadow: 0px 0px 10px #66FCF1;
+  border-radius: 5px;
+}
+
+#add-btn{
+  margin-left: 35px;
+  background: none;
+  color: white;
+  border-width: 0.3rem;
+  font-size: 1.2rem;
+  border-radius: 3px;
+}
+
+#add-btn:hover{
+  box-shadow: 0px 0px 10px white;
+  transform: scale(1.2);
+}
+
+#cards{
+  margin-left: 17vw;
+  margin-top: 20px;
 }
 
 .card{
@@ -91,7 +145,24 @@ body {
   width: 200px;
   border: solid;
   border-color: white;
-  margin: auto;
+  margin-top: 20px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
 }
+
+.card:hover{
+  transform: scale(1.05);
+  box-shadow: 0px 0px 10px white;
+}
+
+.cardRem{
+  background: none;
+  padding: 10px;
+  color: white;
+}
+
 
 
