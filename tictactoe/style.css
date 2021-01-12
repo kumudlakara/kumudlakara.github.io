@@ -1,0 +1,15 @@
+.square{
+    border: solid;
+    width: 15vw;
+    height: 8vh;
+}
+
+.square:hover{
+    background-color: blueviolet;
+}
+
+#gameboard{
+    width: 20vw;
+    display: grid;
+    grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+}
