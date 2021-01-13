@@ -10,7 +10,7 @@ const gameBoard = (() => {
     const show = () => {
         const maindiv = document.querySelector('#gameboard')
         for(let i=0; i<9; i++){
-            console.log("in  for");
+            //console.log("in  for");
             const sqdiv = document.createElement('div');
             sqdiv.classList.add("square");
             const idName = "square"+i;
@@ -23,16 +23,35 @@ const gameBoard = (() => {
         console.log(p);
         const elId = e.target.id;
         const idx = parseInt(elId[6]);
-        console.log(idx);
+        console.log("index"+idx);
         if(p.name === "player1"){
-            board[idx] = 1;
+            if(idx >= 0 && idx <= 2)
+            board[0][idx] = 1;
+            else if(idx >= 3 && idx <= 5)
+            board[1][idx-3] = 1;
+            else
+            board[2][idx-6] = 1;
             
         }else{
-            board[idx] = -1;
+            if(idx >= 0 && idx <= 2)
+            board[0][idx] = -1;
+            else if(idx >= 3 && idx <= 5)
+            board[1][idx-3] = -1;
+            else
+            board[2][idx-6] = -1;
         }
         e.target.textContent = p.marker;
         console.log(board);
+        play(togglep(p));
+        game().win(board);
     };
+
+    const togglep = (p) => {
+        if(p.name === "player1")
+        return p2;
+        else
+        return p1;
+    }
 
     const reset = () => {
         const sqdivs = document.querySelectorAll('.square');
@@ -73,7 +92,7 @@ const game = () => {
         window.alert("gameover");
     }
     console.log("win false");
-    //play(p1);
+    play(p1);
     let t = p1;
     p1 = p2;
     p2 = t;
@@ -135,7 +154,10 @@ const game = () => {
             }
         }
         }
-
+        if(p1won === true ){
+            window.alert("p1 won!");
+            location.reload();
+        }else{
     //check win for player2
     for(let i = 0; i<3; i++){
         for(let j = 0; j<3; j++){
@@ -185,10 +207,15 @@ const game = () => {
         }
     }
     }
-    return (p1won || p2won);
+    if(p2won === true){
+        window.alert("p2 won!!");
+        location.reload();
+    }
+    }
+
     };
 
-    return {round: round};
+    return {round: round, win: win};
 }
 
 function play(p){
@@ -204,4 +231,6 @@ gameBoard.show();
 const p1 = Player("player1");
 const p2 = Player("player2");
 const g = game();
-g.round(p1, p2);
+play(p1);
+//play(p2);
+//g.round(p1, p2);
