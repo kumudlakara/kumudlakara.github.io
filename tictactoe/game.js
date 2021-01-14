@@ -1,11 +1,8 @@
-
 const gameBoard = (() => {
     let board =  new Array(3);
     for(let j = 0; j<board.length; j++){
         board[j] = new Array(3);
-    }
-
-
+    };
 
     const show = () => {
         const maindiv = document.querySelector('#gameboard')
@@ -20,10 +17,10 @@ const gameBoard = (() => {
         };
     
     const update = (e,p) => {
-        console.log(p);
+        console.log("in update");
         const elId = e.target.id;
         const idx = parseInt(elId[6]);
-        console.log("index"+idx);
+        //console.log("index"+idx);
         if(p.name === "player1"){
             if(idx >= 0 && idx <= 2)
             board[0][idx] = 1;
@@ -41,16 +38,22 @@ const gameBoard = (() => {
             board[2][idx-6] = -1;
         }
         e.target.textContent = p.marker;
-        console.log(board);
+        //console.log(board);
+        console.log(p.name);
         play(togglep(p));
         game().win(board);
+        console.log("after win-------------------");
     };
 
     const togglep = (p) => {
-        if(p.name === "player1")
-        return p2;
-        else
+        console.log("in toggle");
+        if(p.name === "player1"){
+            console.log(p2);
+            return p2;}
+        else{
+            console.log(p1);
         return p1;
+        }
     }
 
     const reset = () => {
@@ -102,11 +105,13 @@ const game = () => {
 
 
     const win = (board) =>{
-        console.log(board);
-        p1won = true;
-        p2won = true;
+        //console.log(board);
+        let p1won;
+        let p2won;
         //check win for player1
         for(let i = 0; i<3; i++){
+            p1won = true;
+        
             for(let j = 0; j<3; j++){
                 if(board[i][j] === 1){
                     if(j===2 && p1won===true)
@@ -160,6 +165,7 @@ const game = () => {
         }else{
     //check win for player2
     for(let i = 0; i<3; i++){
+        p2won = true;
         for(let j = 0; j<3; j++){
             if(board[i][j] === -1){
                 if(j===2 && p2won===true)
@@ -212,7 +218,27 @@ const game = () => {
         location.reload();
     }
     }
+    if(full(board)){
+        location.reload();
+    }
 
+    function full(){
+        let overFlag=0;
+        for(let i=0; i<3; i++){
+            for(let j=0; j<3; j++){
+                if(board[i][j] === 1 || board[i][j] === -1){
+                    continue;
+                }
+                else{
+                    overFlag=0;
+                    break;
+                }
+            }
+        }
+        if(overFlag === 1){
+           return true; 
+        }else return false;
+    };
     };
 
     return {round: round, win: win};
@@ -220,8 +246,11 @@ const game = () => {
 
 function play(p){
     console.log("in play");
+    console.log("after toggle:"+p.name);
     gb = document.querySelectorAll('.square');
+    //console.log(gb);
     gb.forEach(sq => sq.addEventListener("click", function(e){
+        console.log("in event"+p.name);
         gameBoard.update(e,p);
         }));
     
@@ -231,6 +260,5 @@ gameBoard.show();
 const p1 = Player("player1");
 const p2 = Player("player2");
 const g = game();
-play(p1);
-//play(p2);
+play(p2);
 //g.round(p1, p2);
