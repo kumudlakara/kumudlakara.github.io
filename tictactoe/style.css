@@ -1,15 +1,51 @@
+body{
+    font-family: OCR A Std, monospace;
+    background: url("https://mocah.org/uploads/posts/1156269-drawing-cat-animals-simple-background-minimalism-blue-background-sitting-text-blue-scarf-line-screenshot-computer-wallpaper.jpg");
+    background-position: center;
+    background-size: cover;
+    color: darkgrey
+}
 .square{
     border: solid;
-    width: 15vw;
-    height: 8vh;
+    width: 150px;;
+    height: 150px;
+    font-size: 5rem;
+    text-align: center;
 }
 
 .square:hover{
-    background-color: blueviolet;
+    background-color: #555378;
 }
 
 #gameboard{
-    width: 20vw;
+    width: 24.3vw;
     display: grid;
     grid-template: repeat(3, 1fr)/repeat(3, 1fr);
+    margin: auto;
+    margin-top: 8-px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+header{
+    margin-left: 730px;
+    font-size: 2rem;
+    color: white;
+
+}
+
+#players{
+    display: flex;
+    justify-content: center;
+}
+.player{
+    font-size: 2.5rem;
+    margin: auto;
+}
+
+.active{
+    -webkit-transition: transform 1s ease-in-out;
+    transform: scale(1.2);
+    color: white;
+    text-shadow: 0px 0px 0.4rem white;
+    border: 
 }

@@ -7,7 +7,6 @@ const gameBoard = (() => {
     const show = () => {
         const maindiv = document.querySelector('#gameboard')
         for(let i=0; i<9; i++){
-            //console.log("in  for");
             const sqdiv = document.createElement('div');
             sqdiv.classList.add("square");
             const idName = "square"+i;
@@ -16,11 +15,9 @@ const gameBoard = (() => {
         }
         };
     
-    const update = (e,p) => {
-        console.log("in update");
+    const update = (e) => {
         const elId = e.target.id;
         const idx = parseInt(elId[6]);
-        //console.log("index"+idx);
         if(p.name === "player1"){
             if(idx >= 0 && idx <= 2)
             board[0][idx] = 1;
@@ -38,35 +35,27 @@ const gameBoard = (() => {
             board[2][idx-6] = -1;
         }
         e.target.textContent = p.marker;
-        //console.log(board);
-        console.log(p.name);
-        play(togglep(p));
         game().win(board);
-        console.log("after win-------------------");
     };
 
     const togglep = (p) => {
         console.log("in toggle");
         if(p.name === "player1"){
-            console.log(p2);
+            const player1 = document.querySelector('#player1');
+            const player2 = document.querySelector('#player2');
+            player1.classList.remove("active");
+            player2.classList.add("active");
             return p2;}
         else{
-            console.log(p1);
+            const player1 = document.querySelector('#player1');
+            const player2 = document.querySelector('#player2');
+            player2.classList.remove("active");
+            player1.classList.add("active");
         return p1;
         }
     }
 
-    const reset = () => {
-        const sqdivs = document.querySelectorAll('.square');
-        sqdivs.forEach(sq => function(e){
-            const elId = e.target.id;
-            const idx = parseInt(elId[6]);
-
-            sq.textContent = "";
-            board[idx] = 0;
-        });
-    };
-    return {show: show, board: board, update: update, reset: reset};
+    return {show: show, board: board, update: update, togglep: togglep};
 
 })();
 
@@ -84,28 +73,9 @@ const Player = (name) => {
 
 
 const game = () => {
-    let gameOver = false;
     board = gameBoard.board;
-    const round = (p1,p2) => {
-    for(let i=0; i<5; i++){
-        win(board);
-    if(win(board)){
-        console.log("in win true");
-        gameOver = true;
-        window.alert("gameover");
-    }
-    console.log("win false");
-    play(p1);
-    let t = p1;
-    p1 = p2;
-    p2 = t;
-    gameOver=true;
-    }
-    };
-
 
     const win = (board) =>{
-        //console.log(board);
         let p1won;
         let p2won;
         //check win for player1
@@ -160,7 +130,7 @@ const game = () => {
         }
         }
         if(p1won === true ){
-            window.alert("p1 won!");
+            window.alert("PLAYER-1 won!!");
             location.reload();
         }else{
     //check win for player2
@@ -214,16 +184,17 @@ const game = () => {
     }
     }
     if(p2won === true){
-        window.alert("p2 won!!");
+        window.alert("PLAYER-2 won!!");
         location.reload();
     }
     }
-    if(full(board)){
+    if(full(board) === true){
+        window.alert("Tie!!");
         location.reload();
     }
 
     function full(){
-        let overFlag=0;
+        let overFlag=1;
         for(let i=0; i<3; i++){
             for(let j=0; j<3; j++){
                 if(board[i][j] === 1 || board[i][j] === -1){
@@ -241,24 +212,22 @@ const game = () => {
     };
     };
 
-    return {round: round, win: win};
+    return {win: win};
 }
 
-function play(p){
-    console.log("in play");
-    console.log("after toggle:"+p.name);
+function play(){
     gb = document.querySelectorAll('.square');
-    //console.log(gb);
-    gb.forEach(sq => sq.addEventListener("click", function(e){
-        console.log("in event"+p.name);
-        gameBoard.update(e,p);
-        }));
-    
+    for(let i = 0; i<gb.length; i++){
+        gb[i].addEventListener("click", function(e){
+            gameBoard.update(e);
+            p = gameBoard.togglep(p);
+            });
+    }
 }
 
 gameBoard.show();
 const p1 = Player("player1");
 const p2 = Player("player2");
 const g = game();
-play(p2);
-//g.round(p1, p2);
+let p = p1;
+play();
