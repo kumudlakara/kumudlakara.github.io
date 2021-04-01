@@ -1,0 +1,17 @@
+.task{
+    border: solid;
+    margin-bottom: 20px;
+}
+
+#proj-container{
+    /* display: none; */
+}
+
+#addTask{
+    margin-bottom: 10px;
+}
+
+#taskInput{
+    display: none;  
+}
+
