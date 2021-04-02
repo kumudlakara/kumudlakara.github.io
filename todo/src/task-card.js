@@ -10,15 +10,19 @@ const createTask = (name, desc, endDate) => {
     let label = document.createElement('label');
     label.for = name;
     label.textContent = name;
-    label.id = name;
+    //label.id = name;
+    label.classList.add(name);
     let btn = document.createElement('button');
-    btn.class = 'expand';
+    btn.classList.add('expand');
+    let btnIdStr = name+"-expand";
+    btn.id = btnIdStr;
     btn.textContent = '+';
     let d = document.createElement('p');
     d.textContent = "End: "+endDate;
     let dpar = document.createElement('p');
     dpar.textContent = desc;
-
+    dpar.classList.add("desc");
+    dpar.classList.add(btnIdStr);
     task.append(ip, label, btn, d, dpar);
 
     return task;
