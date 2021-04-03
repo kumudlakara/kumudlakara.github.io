@@ -1,9 +1,71 @@
+body{
+    display: block;
+    /* background: url(https://img.freepik.com/free-photo/palms-leaves-white-wood-background-with-space-right_24972-50.jpg?size=626&ext=jpg); */
+    /* background-size: cover; */
+}
+
+#head{
+    width: 100vw;
+    text-align: center;
+    font-family: Helvetica, Arial, sans-serif;
+    margin-bottom: 50px;
+}
+
+#add-btn{
+    width: 100vw; 
+    display: flex;
+    justify-content: center;
+}
+
+#addTask{
+    border: none;
+    padding: 15px;
+    width: 20%;
+    border-radius: 10px;
+    background-color: 
+}
+
+#addTask:hover{
+    transform: scale(1.2);
+    box-shadow: 0px 0px 5px #000000;
+}
+
+#footer-img{
+    /* position: fixed; */
+    /* bottom: 0px; */
+    /* width: 100vw; */
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+}
+
 .task{
     border: solid;
     margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    /* padding: 10px; */
+}
+
+.expand{
+    margin-left: 85%;
+    margin-top: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5rem;
+    border: none;
+    background: none;
 }
 
 #proj-container{
+    border: solid;
+    border-color: #D4AF37;
+    border-radius: 5px;
+    width: 50%;
+    display: block;
+    box-shadow: 0px 0px ;
+    padding: 10px;
+    margin-bottom: 250px;
+    margin-left: 25%;
+    margin-top: 20px;
     /* display: none; */
 }
 
@@ -18,4 +80,6 @@
 .desc{
     display: none;
 }
+
+
 
