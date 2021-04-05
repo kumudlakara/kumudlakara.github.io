@@ -10,17 +10,20 @@
         </div>
         <div id="taskForm">
             <form id="taskInput">
-                <h1>Add new task</h1>
+                <h2 id="addtask-heading">Add new task</h1>
                 <br>
-                <label for="taskTitle">Task Title</label>
+                <div id="mainForm">
+                <label for="taskTitle">Task Title</label><br>
                 <input type="text" name="taskTitle" required>
-                <br>
-                <label for="endDate">End Date</label>
+                <br><br>
+                <label for="endDate">End Date</label><br>
                 <input type="date" name="endDate">
-                <br>
+                <br><br>
                 <label for=taskDesc>Task Description</label><br>
                 <textarea name="taskDesc"></textarea><br>
+                <br>
                 <button type="submit" name="submit" id="add-card">Add</button>
+                </div>
             </form>
         </div>
         <div id="add-btn">

@@ -7,6 +7,7 @@ function addTaskFunc() {
     console.log("In the event handler");
     let projContainer = document.getElementById('proj-container');
     projContainer.style.display = "none";
+    taskBtn.style.display = "none";
     let taskInput = document.getElementById("taskInput");
     taskInput.style.display = "block";
     cardBtn.addEventListener("click", addCard);
